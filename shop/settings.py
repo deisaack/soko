@@ -14,9 +14,8 @@ SECRET_KEY = '1sd2=i9&m9opx!x=bh@xgsan5(n&s%=m!o@9w7t43df_k_ulql'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Application definition
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -116,9 +116,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'live/media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'live/static')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"
 
@@ -134,3 +138,11 @@ AUTH_USER_MODEL = 'authtools.User'
 LOGIN_REDIRECT_URL = reverse_lazy("home")
 LOGIN_URL = reverse_lazy("accounts:login")
 THUMBNAIL_EXTENSION = 'png'
+ALLOWED_HOSTS = ['O.O.O.O', '127.0.0.1', 'testryanadashop.herokuapp.com']
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'iso@gmail.com' #my gmail username
+EMAIL_HOST_PASSWORD = 'anypassword-if-correct' #my gmail password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Kipkemei <yiuey@gmail.com>"
