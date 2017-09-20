@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<a href="{% url 'products:cart_create' %}">Add a new products to cart</a>
+<table border="1px">
+    <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>See more</th>
+    </tr>
+    {% for cart in cart_list %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ cart.product.name }}</td>
+        <td>{{ cart.product.price }}</td>
+        <td>{{ cart.quantity }}</td>
+        <td><a href="{{ cart.get_absolute_url }}">View</a></td>
+    </tr>
+    {% empty %}
+    <tr colspan="5">No Products</tr>
+    {% endfor %}
+</table>
+{% endblock container %}

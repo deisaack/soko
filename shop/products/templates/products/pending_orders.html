@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<h1>Pending Orders</h1>
+{% for cart in cart_list %}
+<b>{{ forloop.counter }}:</b> {{ cart.quantity }} {{ cart }} <br>
+{% empty %}
+<h3>No orders have been received </h3>
+{% endfor %}
+{% endblock container %}

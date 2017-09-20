@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<a href="{% url 'products:product_create' %}">Add a new product</a>
+<table border="1px">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Description</th>
+        <th>Link</th>
+        <th>Add to cart</th>
+    </tr>
+    {% for product in product_list %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.description }}</td>
+        <td><a href="{{ product.get_absolute_url }}">View</a></td>
+        <td>
+            <center><a href="{% url 'products:cart_create' %}" type="submit">+</a></center>
+        </td>
+    </tr>
+    {% empty %}
+    <tr colspan="5">No Products</tr>
+    {% endfor %}
+</table>
+{% endblock container %}

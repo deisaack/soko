@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+    {% load thumbnail %}
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}{% endblock description %}">
+    <meta name="author" content="Arun Ravindran">
+
+    <title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    {% block messages %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+            <a class="close" data-dismiss="alert">×</a>
+            {{ message|safe }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
+  <h1>Shop</h1>
+    <div class="container">
+      <div class="col-sm-3">
+        <h3>Userful Links</h3>
+        <a href="{% url 'home' %}">Home</a> <br>
+        <a href="{% url 'about' %}">About Us</a> <br>
+        <a href="{% url 'accounts:login' %}">login</a> <br>
+        <a href="{% url 'accounts:logout' %}">Logout</a> <br>
+        <a href="{% url 'accounts:signup' %}">Signup</a> <br>
+        <a href="{% url 'accounts:password-change' %}">Change Password</a> <br>
+        <a href="{% url 'accounts:password-reset' %}">Reset Password</a> <br>
+        <a href="{% url 'products:product_list' %}">Available Product</a> <br>
+        <a href="{% url 'products:cart_create' %}">Add to Cart</a> <br>
+        <a href="{% url 'profiles:edit_self' %}">Edit Profile</a> <br>
+        <a href="{% url 'products:cart_list' %}">My Cart</a> <br>
+        <a href="{% url 'products:pending_orders' %}">Pending Orders</a> <br>
+        <a href="/contrler-room/">CONTRAL ROOM</a>
+
+      </div>
+      <div class="col-sm-9">
+    {% block container %}
+    <h3>HELLO WORLD!!</h3>
+    {% endblock container %}
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
+
+

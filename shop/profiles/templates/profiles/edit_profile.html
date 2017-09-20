@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+
+{% block container %}
+
+<div class="container">
+  <h1 class="text-primary">Complete your Profile</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+	{% crispy user_form %}
+	{% crispy profile_form %}
+      </form>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-default pull-right" href="{% url 'accounts:password-change' %}">Change Password</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
